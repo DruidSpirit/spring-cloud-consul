@@ -20,8 +20,6 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 
-import com.ecwid.consul.v1.ConsulClient;
-
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -98,35 +96,39 @@ public class ConsulAutoServiceRegistrationAutoConfiguration {
 
 	}
 
-	protected static class OnConsulRegistrationEnabledCondition extends AllNestedConditions {
+	protected static class OnConsulRegistrationEnabledCondition
+			extends AllNestedConditions {
 
 		OnConsulRegistrationEnabledCondition() {
 			super(ConfigurationPhase.REGISTER_BEAN);
 		}
 
-		@ConditionalOnProperty(value = "spring.cloud.service-registry.auto-registration.enabled",
-			matchIfMissing = true)
+		@ConditionalOnProperty(
+				value = "spring.cloud.service-registry.auto-registration.enabled",
+				matchIfMissing = true)
 		static class AutoRegistrationEnabledClass {
 
 		}
 
-		@ConditionalOnProperty(value = "spring.cloud.consul.service-registry.auto-registration.enabled",
-			matchIfMissing = true)
+		@ConditionalOnProperty(
+				value = "spring.cloud.consul.service-registry.auto-registration.enabled",
+				matchIfMissing = true)
 		static class ConsulAutoRegistrationEnabledClass {
 
 		}
 
 		@ConditionalOnProperty(value = "spring.cloud.service-registry.enabled",
-			matchIfMissing = true)
+				matchIfMissing = true)
 		static class ServiceRegistryEnabledClass {
 
 		}
 
 		@ConditionalOnProperty(value = "spring.cloud.consul.service-registry.enabled",
-			matchIfMissing = true)
+				matchIfMissing = true)
 		static class ConsulServiceRegistryEnabledClass {
 
 		}
 
 	}
+
 }

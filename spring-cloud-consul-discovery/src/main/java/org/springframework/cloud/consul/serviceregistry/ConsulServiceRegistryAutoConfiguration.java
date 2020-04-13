@@ -65,24 +65,25 @@ public class ConsulServiceRegistryAutoConfiguration {
 		return new ConsulDiscoveryProperties(inetUtils);
 	}
 
-	protected static class OnConsulRegistrationEnabledCondition extends AllNestedConditions {
+	protected static class OnConsulRegistrationEnabledCondition
+			extends AllNestedConditions {
 
 		OnConsulRegistrationEnabledCondition() {
 			super(ConfigurationPhase.REGISTER_BEAN);
 		}
 
-
 		@ConditionalOnProperty(value = "spring.cloud.service-registry.enabled",
-			matchIfMissing = true)
+				matchIfMissing = true)
 		static class ServiceRegistryEnabledClass {
 
 		}
 
 		@ConditionalOnProperty(value = "spring.cloud.consul.service-registry.enabled",
-			matchIfMissing = true)
+				matchIfMissing = true)
 		static class ConsulServiceRegistryEnabledClass {
 
 		}
 
 	}
+
 }
